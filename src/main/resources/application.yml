@@ -7,7 +7,7 @@ eureka:
     hostname: localhost
 spring:
   application:
-    name: comment
+    name: comment-user
   data:
     mongodb:
       database: comment_db

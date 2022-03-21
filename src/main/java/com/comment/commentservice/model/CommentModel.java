@@ -15,14 +15,20 @@ import java.util.Date;
 @Data
 public class CommentModel {
     @Id
-    private String commentId;
+    private String commentID;
 
-    @NotEmpty(message = "comment is required")
+    @NotEmpty(message = "user ID is required")
+    private String userID;
+
+    @NotEmpty(message = "Comment By is required")
+    private String commentedBy;
+
+    @NotEmpty(message = "Comment is required")
     private String comment;
 
-    @NotEmpty(message = "Date is required")
-    private Date createdAt;
+    @NotEmpty(message = "post ID is required")
+    private String postID;
 
-    @NotEmpty(message = "Update date is required")
+    private Date createdAt;
     private Date updatedAt;
 }
