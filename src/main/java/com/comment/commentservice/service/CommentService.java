@@ -13,5 +13,8 @@ public class CommentService {
     @Autowired
     private CommentRepository commentRepository;
 
-
+    public int commentCount(String postId){
+        int count=this.commentRepository.findByPostID(postId).size();
+        return count;
+    }
 }
