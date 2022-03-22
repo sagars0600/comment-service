@@ -13,5 +13,8 @@ public class CommentService {
     @Autowired
     private CommentRepository commentRepository;
 
+    public CommentModel findByCommentId(String commentId){
+        return this.commentRepository.findById(commentId).get();
+    }
 
 }
