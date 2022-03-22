@@ -13,5 +13,8 @@ public class CommentService {
     @Autowired
     private CommentRepository commentRepository;
 
-
+    public String deleteByCommentId(String commentId){
+        this.commentRepository.deleteById(commentId);
+        return "Delete CommentID "+commentId+" from DB";
+    }
 }
