@@ -13,6 +13,13 @@ public class CommentService {
     @Autowired
     private CommentRepository commentRepository;
 
+    public CommentModel saveComment(CommentModel commentModel, String postId){
+        commentModel.setPostID(postId);
+        commentModel.setCreatedAt(LocalDateTime.now());
+        commentModel.setUpdatedAt(LocalDateTime.now());
+        return commentRepository.save(commentModel); }
+
+
     public CommentModel findByCommentId(String commentId){
         return this.commentRepository.findById(commentId).get();
     }
@@ -37,6 +44,7 @@ public class CommentService {
         this.commentRepository.deleteById(commentId);
         return "Delete CommentID "+commentId+" from DB";
     }
+
 
 
 }
