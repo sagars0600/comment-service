@@ -13,5 +13,13 @@ public class CommentService {
     @Autowired
     private CommentRepository commentRepository;
 
+    public CommentModel updateComment(CommentModel commentModel, String postId,String commentId){
+        commentModel.setCommentID(commentId);
+        commentModel.setUpdatedAt(LocalDateTime.now());
+        commentModel.setCreatedAt(commentRepository.findById(commentId).get().getCreatedAt());
+        commentModel.setPostID(postId);
+        return commentRepository.save(commentModel);
+    }
+
 
 }
