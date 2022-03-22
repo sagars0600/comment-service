@@ -14,6 +14,12 @@ public class CommentService {
     private CommentRepository commentRepository;
 
 
+    public int commentCount(String postId){
+        int count=this.commentRepository.findByPostID(postId).size();
+        return count;
+    }
+
+
     public CommentModel updateComment(CommentModel commentModel, String postId,String commentId){
         commentModel.setCommentID(commentId);
         commentModel.setUpdatedAt(LocalDateTime.now());
@@ -28,5 +34,6 @@ public class CommentService {
         this.commentRepository.deleteById(commentId);
         return "Delete CommentID "+commentId+" from DB";
     }
+
 
 }
