@@ -17,4 +17,8 @@ public class CommentController {
 
     @Autowired
     private CommentService commentService;
+    @PostMapping("/posts/{postId}/comments")
+    public ResponseEntity<CommentModel> saveComment(@Valid @RequestBody CommentModel commentModel, @PathVariable("postId") String postId){
+        return new ResponseEntity<>(commentService.saveComment(commentModel,postId), HttpStatus.ACCEPTED); }
 }
+
