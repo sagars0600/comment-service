@@ -7,13 +7,21 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+
+
 import javax.validation.Valid;
+
 
 @RestController
 public class CommentController {
 
     @Autowired
     private CommentService commentService;
+
+
+    @GetMapping("/posts/{postId}/comments/{commentId}")
+    public ResponseEntity<CommentModel> findByCommentId(@PathVariable("postId") String postId,@PathVariable("commentId") String commentId){
+        return new ResponseEntity<>(commentService.findByCommentId(commentId), HttpStatus.ACCEPTED);
 
 
     @GetMapping("/posts/{postId}/comments/count")
@@ -28,6 +36,7 @@ public class CommentController {
     @DeleteMapping("/posts/{postId}/comments/{commentId}")
     public ResponseEntity<String> deletebyCommentId(@PathVariable("postId") String postId,@PathVariable("commentId") String commentId){
         return new ResponseEntity<>(commentService.deleteByCommentId(commentId), HttpStatus.ACCEPTED);
+
 
 
     }
