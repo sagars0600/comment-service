@@ -14,9 +14,16 @@ public class CommentController {
 
     @Autowired
     private CommentService commentService;
+
     @PutMapping("/posts/{postId}/comments/{commentId}")
     public ResponseEntity<CommentModel> updateComment(@RequestBody @Valid CommentModel commentModel, @PathVariable("postId") String postId, @PathVariable("commentId") String commentId){
         return new ResponseEntity<>(commentService.updateComment(commentModel,postId,commentId), HttpStatus.ACCEPTED);
+
+
+    @DeleteMapping("/posts/{postId}/comments/{commentId}")
+    public ResponseEntity<String> deletebyCommentId(@PathVariable("postId") String postId,@PathVariable("commentId") String commentId){
+        return new ResponseEntity<>(commentService.deleteByCommentId(commentId), HttpStatus.ACCEPTED);
+
     }
 }
 
