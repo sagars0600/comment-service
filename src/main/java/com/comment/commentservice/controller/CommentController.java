@@ -1,5 +1,6 @@
 package com.comment.commentservice.controller;
 
+import com.comment.commentservice.model.CommentDto;
 import com.comment.commentservice.model.CommentModel;
 import com.comment.commentservice.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.ws.rs.QueryParam;
+import java.util.List;
 
 
 @RestController
@@ -42,6 +45,11 @@ public class CommentController {
     @DeleteMapping("/posts/{postId}/comments/{commentId}")
     public ResponseEntity<String> deletebyCommentId(@PathVariable("postId") String postId, @PathVariable("commentId") String commentId) {
         return new ResponseEntity<>(commentService.deleteByCommentId(commentId), HttpStatus.ACCEPTED);
+    }
+
+    @GetMapping("/posts/{postId}/comments")
+    public ResponseEntity<List<CommentDto>> showCommentsByPostId(@PathVariable("postId") String postId, @QueryParam("page") Integer page, @QueryParam("pageSize") Integer pageSize) {
+        return new ResponseEntity<>(commentService.allComments(postId,page,pageSize), HttpStatus.ACCEPTED);
     }
 
 }
