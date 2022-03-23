@@ -17,8 +17,7 @@ public class CommentModel {
     @Id
     private String commentID;
 
-    @NotEmpty(message = "user ID is required")
-    private String userID;
+
 
     @NotEmpty(message = "Comment By is required")
     private String commentedBy;
