@@ -23,6 +23,7 @@ public class CommentController {
 
 
     @GetMapping("/posts/{postId}/comments/{commentId}")
+
     public ResponseEntity<CommentDto> findByCommentId(@PathVariable("postId") String postId, @PathVariable("commentId") String commentId) {
         return new ResponseEntity<>(commentService.findByCommentId(commentId), HttpStatus.ACCEPTED);
     }
@@ -46,12 +47,12 @@ public class CommentController {
 
     @GetMapping("/posts/{postId}/comments")
     public ResponseEntity<List<CommentDto>> showCommentsByPostId(@PathVariable("postId") String postId, @QueryParam("page") Integer page, @QueryParam("pageSize") Integer pageSize) {
-        return new ResponseEntity<>(commentService.allComments(postId,page,pageSize), HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(commentService.allComments(postId, page, pageSize), HttpStatus.ACCEPTED);
     }
 
 
     @PostMapping("/posts/{postId}/comments")
-    public ResponseEntity<CommentDto>saveComment(@Valid@RequestBody CommentModel commentModel, @PathVariable("postId") String postId) {
+    public ResponseEntity<CommentDto>saveComment(@Valid @RequestBody CommentModel commentModel, @PathVariable("postId") String postId) {
 
         return new ResponseEntity<>(commentService.saveComment(commentModel, postId), HttpStatus.ACCEPTED);
 

@@ -8,8 +8,8 @@ import com.comment.commentservice.repo.CommentRepository;
 import com.customer.Exception.CommentNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.stereotype.Service;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -29,7 +29,7 @@ public class CommentService {
 
     public int commentCount(String postId) {
         int count = this.commentRepository.findByPostID(postId).size();
-        return count;
+       return  count;
     }
 
 
@@ -48,16 +48,17 @@ public class CommentService {
     }
 
     public List<CommentDto> allComments(String postId, Integer page, Integer pageSize) {
-        if(page==null){
-            page=1;
+        if (page == null) {
+            page = 1;
         }
-        if(pageSize==null){
-            pageSize=10;
+        if (pageSize == null) {
+            pageSize = 10;
         }
-        CommentDto commentDTO=new CommentDto();
-        Pageable firstPage = PageRequest.of(page-1, pageSize);
-        List<CommentModel> commentModels  = commentRepository.findBypostID(postId,firstPage);
+        CommentDto commentDTO = new CommentDto();
+        Pageable firstPage = PageRequest.of(page - 1, pageSize);
+        List<CommentModel> commentModels = commentRepository.findBypostID(postId, firstPage);
         List<CommentDto> commentDTOS = new ArrayList<>();
+
         for(CommentModel commentModel:commentModels){
             CommentDto commentDTO1=new CommentDto(commentModel.getCommentID(),
                     feignUser.findByID(commentModel.getCommentedBy()).getFirstName(),
@@ -65,6 +66,10 @@ public class CommentService {
                    feignLike.countLike(commentModel.getCommentID()));
         }
         return  commentDTOS;
+
+
+
+
 
 
     }
