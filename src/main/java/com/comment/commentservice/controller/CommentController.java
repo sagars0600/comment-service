@@ -12,8 +12,9 @@ import javax.validation.Valid;
 import javax.ws.rs.QueryParam;
 import java.util.List;
 
-
+@CrossOrigin(value = "*")
 @RestController
+@RequestMapping("/posts/{postId}/comments")
 public class CommentController {
 
     @Autowired
@@ -22,36 +23,36 @@ public class CommentController {
 
 
 
-    @GetMapping("/posts/{postId}/comments/{commentId}")
+    @GetMapping("/{commentId}")
 
     public ResponseEntity<CommentDto> findByCommentId(@PathVariable("postId") String postId, @PathVariable("commentId") String commentId) {
         return new ResponseEntity<>(commentService.findByCommentId(commentId), HttpStatus.ACCEPTED);
     }
 
 
-    @GetMapping("/posts/{postId}/comments/count")
+    @GetMapping("/count")
     public ResponseEntity<Integer> commentCount(@PathVariable("postId") String postId) {
         return new ResponseEntity<>(commentService.commentCount(postId), HttpStatus.ACCEPTED);
     }
 
-    @PutMapping("/posts/{postId}/comments/{commentId}")
+    @PutMapping("/{commentId}")
     public ResponseEntity<CommentModel> updateComment(@RequestBody @Valid CommentModel commentModel, @PathVariable("postId") String postId, @PathVariable("commentId") String commentId) {
         return new ResponseEntity<>(commentService.updateComment(commentModel, postId, commentId), HttpStatus.ACCEPTED);
     }
 
 
-    @DeleteMapping("/posts/{postId}/comments/{commentId}")
+    @DeleteMapping("/{commentId}")
     public ResponseEntity<String> deletebyCommentId(@PathVariable("postId") String postId, @PathVariable("commentId") String commentId) {
         return new ResponseEntity<>(commentService.deleteByCommentId(commentId), HttpStatus.ACCEPTED);
     }
 
-    @GetMapping("/posts/{postId}/comments")
+    @GetMapping()
     public ResponseEntity<List<CommentDto>> showCommentsByPostId(@PathVariable("postId") String postId, @QueryParam("page") Integer page, @QueryParam("pageSize") Integer pageSize) {
         return new ResponseEntity<>(commentService.allComments(postId, page, pageSize), HttpStatus.ACCEPTED);
     }
 
 
-    @PostMapping("/posts/{postId}/comments")
+    @PostMapping()
     public ResponseEntity<CommentDto>saveComment(@Valid @RequestBody CommentModel commentModel, @PathVariable("postId") String postId) {
 
         return new ResponseEntity<>(commentService.saveComment(commentModel, postId), HttpStatus.ACCEPTED);

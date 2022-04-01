@@ -61,16 +61,11 @@ public class CommentService {
 
         for(CommentModel commentModel:commentModels){
             CommentDto commentDTO1=new CommentDto(commentModel.getCommentID(),
-                    feignUser.findByID(commentModel.getCommentedBy()).getFirstName(),
+                    feignUser.findByID(commentModel.getCommentedBy()),
                     commentModel.getComment(),commentModel.getCreatedAt(),commentModel.getUpdatedAt(),
                    feignLike.countLike(commentModel.getCommentID()));
         }
         return  commentDTOS;
-
-
-
-
-
 
     }
 
@@ -81,7 +76,7 @@ public class CommentService {
         commentModel.setUpdatedAt(LocalDateTime.now());
         this.commentRepository.save(commentModel);
         CommentDto commentDTO=new CommentDto(commentModel.getCommentID(),
-                feignUser.findByID(commentModel.getCommentedBy()).getFirstName(),
+                feignUser.findByID(commentModel.getCommentedBy()),
                 commentModel.getComment(),commentModel.getCreatedAt(),commentModel.getUpdatedAt(),
                 feignLike.countLike(commentModel.getCommentID()));
         return commentDTO;
@@ -94,7 +89,7 @@ try {
     CommentModel commentModel = commentRepository.findById(commentId).get();
 
     CommentDto commentDTO = new CommentDto(commentModel.getCommentID(),
-            feignUser.findByID(commentModel.getCommentedBy()).getFirstName(),
+            feignUser.findByID(commentModel.getCommentedBy()),
             commentModel.getComment(), commentModel.getCreatedAt(), commentModel.getUpdatedAt(),
             feignLike.countLike(commentModel.getCommentID()));
     return commentDTO;
