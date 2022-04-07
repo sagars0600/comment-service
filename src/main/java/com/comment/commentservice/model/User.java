@@ -1,11 +1,12 @@
 package com.comment.commentservice.model;
 
+import com.comment.commentservice.enums.BloodGroup;
+import com.comment.commentservice.enums.Gender;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
@@ -30,8 +31,8 @@ public class User {
     @NotEmpty(message = "Phone Number is required")
     private String phoneNumber;
 
-    @NotEmpty(message = "Gender is required")
-    private String gender;
+
+    private Gender gender;
 
     @NotEmpty(message = "Marital Status is required")
     private String address;
@@ -41,11 +42,11 @@ public class User {
 
     private String employeeNumber;
 
-    @NotEmpty(message = "Blood Group  is required")
-    private String bloodGroup;
+
+    private BloodGroup bloodGroup;
 
     @NotEmpty(message = "Email is required")
     private String email;
-    private String password;
+
 
 }

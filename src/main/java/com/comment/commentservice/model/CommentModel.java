@@ -1,11 +1,11 @@
 package com.comment.commentservice.model;
 
+import com.comment.commentservice.constfiles.ConstFile;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-
 import javax.validation.constraints.NotEmpty;
 import java.time.LocalDateTime;
 
@@ -19,10 +19,10 @@ public class CommentModel {
 
 
 
-    @NotEmpty(message = "Comment By is required")
+    @NotEmpty(message = ConstFile.commentedby)
     private String commentedBy;
 
-    @NotEmpty(message = "Comment is required")
+    @NotEmpty(message = ConstFile.errorCode)
     private String comment;
 
 

@@ -1,4 +1,4 @@
-package com.comment.commentservice.controller;
+package com.comment.commentservice.constfiles.controller;
 
 import com.comment.commentservice.model.CommentDto;
 import com.comment.commentservice.model.CommentModel;
@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import javax.validation.Valid;
 import javax.ws.rs.QueryParam;
 import java.util.List;
@@ -36,7 +35,7 @@ public class CommentController {
     }
 
     @PutMapping("/{commentId}")
-    public ResponseEntity<CommentModel> updateComment(@RequestBody @Valid CommentModel commentModel, @PathVariable("postId") String postId, @PathVariable("commentId") String commentId) {
+    public ResponseEntity<CommentDto> updateComment(@RequestBody @Valid CommentModel commentModel, @PathVariable("postId") String postId, @PathVariable("commentId") String commentId) {
         return new ResponseEntity<>(commentService.updateComment(commentModel, postId, commentId), HttpStatus.ACCEPTED);
     }
 
