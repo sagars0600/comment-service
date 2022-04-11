@@ -1,4 +1,4 @@
-package com.comment.commentservice.constfiles.controller;
+package com.comment.commentservice.controller;
 
 import com.comment.commentservice.model.CommentDto;
 import com.comment.commentservice.model.CommentModel;
@@ -18,8 +18,6 @@ public class CommentController {
 
     @Autowired
     private CommentService commentService;
-
-
 
 
     @GetMapping("/{commentId}")
